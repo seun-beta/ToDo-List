@@ -1,28 +1,26 @@
-# ToDo List WebApp
+# ToDo List  
 
-## I built this web app using the Bottle Python WSGI MicroFramework. ##   
+Todo List is a Fullstack Web App that features a list of errands and other tasks that one needs to accomplish. 
 
-I decided to use Bottle because of its ease of learning compared to CherryPy and web2py.  
-  
-I decided to build a ToDo List web app using bottle to apply my knowledge of SQL as Bottle doesn't abstract SQL like Django & Flask.
 
-1. The database used was SQLite.  
-2. The frontend was built using Bottle's in-built template (.tpl files).  
-3. The logic was built using Python.   
-  
-**The link to the [database schema](https://drawsql.app/seunfunmi-adegoke/diagrams/to-do-list)**  
-  
-  
- You can read more about Bottle using its official [Documentation](https://bottlepy.org/docs/0.12/).
+### Tech
 
-> You can only truly learn by applying what you have learnt.  
->>Anonymous
+ToDo List is written in Python3 and Bottle 0.13.  
   
-### To run this webapp on your local computer ###  
+## Installation  
+  
+#### Windows 10 Users
 
-1. Clone this repo.  
-2. Python should be installed on your PC.  
-3. Open your terminal.
-4. >pip install bottle
-5. Change your directory to the code directory.  
-6. >python 1.py
+Please install and set up the following packages first. Ugrade if you find the package already installed:  
+* Download [Python3](https://www.python.org/downloads/). It is advisable to install the package as an administrator. Click on the 'Add path' checkbox before moving on to the next step of the installation process. Run this command in your terminal to see the version you have installed.  
+  ```sh
+  python3 -V
+  ```  
+* Download [pip](https://pip.pypa.io/en/latest/installing) and follow the instructions in the link as an installation guide.  
+* [SQLite3](https://sqlitebrowser.org/) (Ensure it is installed).
+* It is advisable to use bottle in a virtual environment. The README uses [virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/latest/install.html#basic-installation) to create this virtual environment. You could use any virtualenv package of your choice but for Windows, install this wrapper with:
+  ```sh 
+  py -m pip install virtualenvwrapper-win 
+  ```
+  
+* Create a new virtual environment

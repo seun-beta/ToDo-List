@@ -66,7 +66,7 @@ margin-bottom:0;
     <label for="task">
             Task:
         </label><br>
-        <input type="text" name="task" id="task" placeholder="input your task"><br>
+        <input type="text" name="task" id="task" placeholder="input your task" required><br>
         <label for="description">Description:</label><br>
         <textarea name="description"  cols="30" rows="10" placeholder="write your description here"></textarea><br>
         <input type="submit" name="save" value="save"  class="btn" ></div>

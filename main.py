@@ -20,8 +20,10 @@ def home():
     cur.execute("SELECT Id, Task, Description FROM Todo;")
     result = cur.fetchall()   # Returns a list of tuple from the database
     cur.close()
-    output = template('templates/table', rows=result)
-    return output
+
+
+    return template('templates/table', rows=result)
+    
 
 
 @route('/new', method='GET')
@@ -34,13 +36,11 @@ def new_item():
         cur, connection = database_connection()
         cur.execute("INSERT INTO Todo (Task,Description) VALUES (?,?)",
                     (new, description,))
-        new_id = cur.lastrowid()
-        
-        
+        new_id = cur.lastrowid
         connection.commit()
         cur.close()
-
         return template('templates/success', new_id=str(new_id))
+
     else:
         return template('templates/new_task')
 
@@ -52,13 +52,11 @@ def edit_item(number):
         edit = request.GET.get('task', '').strip()
         description = request.GET.get('description', '').strip()
         cur, connection = database_connection()
-        
         cur.execute('UPDATE Todo SET Task = ?, Description = ? WHERE Id = ?',
                     (edit, description, number))
-        
         connection.commit()
         cur.close()
-        
+
         return '''
                 <p> The item %s was sucessfully edited</p>
                 <p>Go <a href="/"> Home</a></p>''' % str(number)

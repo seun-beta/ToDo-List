@@ -2,7 +2,7 @@ import sqlite3
 
 
 def data():
-    database_name = 'db.sqlite'
+    database_name = 'db.sqlite3'
     connection = sqlite3.connect(database_name)
     cur = connection.cursor()
     cur.execute("DROP TABLE IF EXISTS Todo")

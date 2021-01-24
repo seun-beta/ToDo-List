@@ -4,24 +4,19 @@ from bottle import route, run, template, static_file, error, request
 import db
 
 db.data()
-database_name = 'db.sqlite'
+database_name = 'db.sqlite3'
 
 
 def database_connection():
     connection = sqlite3.connect(database_name)
-    return connection.cursor()
-
-
-def commit_data():
-    connection = sqlite3.connect(database_name)
-
-    return connection
+    cur = connection.cursor()
+    return cur, connection
 
 
 # main route
 @route('/')
 def home():
-    cur = database_connection()
+    cur, connection = database_connection()
     cur.execute("SELECT Id, Task, Description FROM Todo;")
     result = cur.fetchall()   # Returns a list of tuple from the database
     cur.close()
@@ -36,16 +31,16 @@ def new_item():
         new = request.GET.get('task', '').strip()
         description = request.GET.get('description', '').strip()
 
-        cur = database_connection()
-
+        cur, connection = database_connection()
         cur.execute("INSERT INTO Todo (Task,Description) VALUES (?,?)",
                     (new, description,))
         new_id = cur.lastrowid()
-        connection = commit_data()
+        
+        
         connection.commit()
         cur.close()
 
-        return template('templates/success', new_id=new_id)
+        return template('templates/success', new_id=str(new_id))
     else:
         return template('templates/new_task')
 
@@ -56,20 +51,20 @@ def edit_item(number):
     if request.GET.get('save', '').strip():
         edit = request.GET.get('task', '').strip()
         description = request.GET.get('description', '').strip()
-        cur = database_connection()
-        cur.execute('UPDATE Todo SET Task = ?, Description = ? WHERE Id = ?'
+        cur, connection = database_connection()
+        
+        cur.execute('UPDATE Todo SET Task = ?, Description = ? WHERE Id = ?',
                     (edit, description, number))
-        connection = commit_data()
+        
         connection.commit()
-
+        cur.close()
         return '''
                 <p> The item %s was sucessfully edited</p>
                 <p>Go <a href="/"> Home</a></p>''' % str(number)
 
     elif request.GET.get('delete', '').strip():
-        cur = database_connection()
+        cur, connection = database_connection()
         cur.execute('DELETE FROM Todo WHERE Id = ?', (number,))
-        connection = commit_data()
         connection.commit()
 
         return '''
@@ -77,7 +72,7 @@ def edit_item(number):
         <p><a href="/">Go Home</a></p>''' % str(number)
 
     else:
-        cur = database_connection()
+        cur, connection = database_connection()
         cur.execute('SELECT Task, Description FROM Todo WHERE Id = ?',
                     (str(number),))
         cur_data = cur.fetchone()

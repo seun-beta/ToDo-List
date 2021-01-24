@@ -23,4 +23,22 @@ Please install and set up the following packages first. Ugrade if you find the p
   py -m pip install virtualenvwrapper-win 
   ```
   
-* Create a new virtual environment
+* Create a new virtual environment:
+  ```sh
+  mkvirtualenv <envname>
+  ```
+* Activate the virtual environment with:
+  ```sh
+  workon <envname>
+  ```
+* Install requirements in the virtual environment created:
+  ```sh
+  py -m pip install bottle 
+  ```
+  ```sh
+  pip install -r requirements.txt
+  ```
+* Run server to ensure everything is running properly.
+  ```sh
+  python main.py
+  ```

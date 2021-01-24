@@ -58,6 +58,7 @@ def edit_item(number):
         
         connection.commit()
         cur.close()
+        
         return '''
                 <p> The item %s was sucessfully edited</p>
                 <p>Go <a href="/"> Home</a></p>''' % str(number)

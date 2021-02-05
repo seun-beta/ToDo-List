@@ -75,10 +75,8 @@ def edit_item(number):
         cur.execute('SELECT Task, Description FROM Todo WHERE Id = ?',
                     (str(number),))
         cur_data = cur.fetchone()
-        print(cur_data)
-        for i in cur_data:
-            task_data = cur_data[0]
-            description_data = cur_data[1]
+        task_data = cur_data[0]
+        description_data = cur_data[1]
 
         return template('templates/edit_task', old_task=task_data,
                         description=description_data, number=number)

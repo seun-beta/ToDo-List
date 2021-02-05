@@ -14,7 +14,7 @@ ToDo List is written in Python3 and Bottle 0.13.
 Please install and set up the following packages first. Ugrade if you find the package already installed:  
 * Download [Python3](https://www.python.org/downloads/). It is advisable to install the package as an administrator. Click on the 'Add path' checkbox before moving on to the next step of the installation process. Run this command in your terminal to see the version you have installed.  
   ```sh
-  python3 -V
+  python -V
   ```  
 * Download [pip](https://pip.pypa.io/en/latest/installing) and follow the instructions in the link as an installation guide.  
 * [SQLite3](https://sqlitebrowser.org/) (Ensure it is installed).
@@ -27,9 +27,11 @@ Please install and set up the following packages first. Ugrade if you find the p
   ```sh
   mkvirtualenv <envname>
   ```
+* Change your directory to the directory of the virtual environment
+
 * Activate the virtual environment with:
   ```sh
-  workon <envname>
+  <envname>\Scripts\activate
   ```
 * Install requirements in the virtual environment created:
   ```sh
@@ -41,4 +43,8 @@ Please install and set up the following packages first. Ugrade if you find the p
 * Run server to ensure everything is running properly.
   ```sh
   python main.py
+  ```
+* Deactivate the virtual environment with:
+  ```sh
+  deactivate
   ```

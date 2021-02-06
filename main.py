@@ -25,15 +25,19 @@ def home():
 
 
     return template('templates/table', rows=result)
-    
 
+# Helper function  
+def request_func(get_request):
+    result = request.GET.get(get_request, '').strip()
+    return result
 
 @route('/new', method='GET')
 def new_item():
-    if request.GET.get('save', '').strip():
+    if request_func('save'):
 
-        new = request.GET.get('task', '').strip()
-        description = request.GET.get('description', '').strip()
+        new = request_func('task')
+        
+        description = request_func('description')
 
         cur, connection = database_connection()
         cur.execute("INSERT INTO Todo (Task,Description) VALUES (?,?)",
@@ -49,9 +53,9 @@ def new_item():
 @route('/edit/:number', method='GET')
 def edit_item(number):
 
-    if request.GET.get('save', '').strip():
-        edit = request.GET.get('task', '').strip()
-        description = request.GET.get('description', '').strip()
+    if request_func('save'):
+        edit = request_func('task')
+        description = request_func('description')
         cur, connection = database_connection()
         cur.execute('UPDATE Todo SET Task = ?, Description = ? WHERE Id = ?',
                     (edit, description, number))
@@ -62,7 +66,7 @@ def edit_item(number):
                 <p> The item %s was sucessfully edited</p>
                 <p>Go <a href="/"> Home</a></p>''' % str(number)
 
-    elif request.GET.get('delete', '').strip():
+    elif request_func('delete'):
         cur, connection = database_connection()
         cur.execute('DELETE FROM Todo WHERE Id = ?', (number,))
         connection.commit()

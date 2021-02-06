@@ -30,13 +30,15 @@ class SeedData:
         
         connection = sqlite3.connect(SeedData.database_name)
         cur = connection.cursor()
-        cur.executescript(f'{drop_table} {create_table} {insert_task1} {insert_task2} {insert_task3} {insert_task4}')
+        cur.executescript(f'''{SeedData.drop_table} {SeedData.create_table} {SeedData.insert_task1}
+                                {SeedData.insert_task2} {SeedData.insert_task3} {SeedData.insert_task4}''')
         connection.commit()
         cur.close()
         return cur, connection
 
 
 data = SeedData()
+data.connect_data()
 
 
 

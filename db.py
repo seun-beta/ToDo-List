@@ -1,12 +1,9 @@
 import sqlite3
 
 
-def data():
+class SeedData:
 
     database_name = 'db.sqlite3'
-    connection = sqlite3.connect(database_name)
-    cur = connection.cursor()
-
     drop_table = "DROP TABLE IF EXISTS Todo;"
     create_table = '''CREATE TABLE Todo (Id INTEGER PRIMARY KEY,
                 Task varchar(100) NOT NULL,
@@ -26,6 +23,20 @@ def data():
                 ('Choose your favourite WSGI-Framework',
                     'This is the fourth description');'''
 
-    cur.executescript(f'{drop_table} {create_table} {insert_task1} {insert_task2} {insert_task3} {insert_task4}')
-    connection.commit()
-    cur.close()
+    def __init__(self):
+        pass
+
+    def connect_data(self):
+        
+        connection = sqlite3.connect(SeedData.database_name)
+        cur = connection.cursor()
+        cur.executescript(f'{drop_table} {create_table} {insert_task1} {insert_task2} {insert_task3} {insert_task4}')
+        connection.commit()
+        cur.close()
+        return cur, connection
+
+
+data = SeedData()
+
+
+

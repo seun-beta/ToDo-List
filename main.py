@@ -3,9 +3,10 @@ import sqlite3
 from bottle import route, run, template,\
     static_file, error, request
 import db
+db.SeedData
 
-db.data()
-database_name = 'db.sqlite3'
+
+database_name = db.data.database_name
 
 
 def database_connection():

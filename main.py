@@ -1,6 +1,7 @@
 import sqlite3
 # Importing all the needed bottle modules
-from bottle import route, run, template, static_file, error, request
+from bottle import route, run, template,\
+    static_file, error, request
 import db
 
 db.data()
@@ -41,8 +42,7 @@ def new_item():
         cur.close()
         return template('templates/success', new_id=str(new_id))
 
-    else:
-        return template('templates/new_task')
+    return template('templates/new_task')
 
 
 @route('/edit/:number', method='GET')
@@ -70,15 +70,15 @@ def edit_item(number):
         <p> The item %s was sucessfully deleted</p>
         <p><a href="/">Go Home</a></p>''' % str(number)
 
-    else:
-        cur, connection = database_connection()
-        cur.execute('SELECT Task, Description FROM Todo WHERE Id = ?',
-                    (str(number),))
-        cur_data = cur.fetchone()
-        task_data = cur_data[0]
-        description_data = cur_data[1]
+    
+    cur, connection = database_connection()
+    cur.execute('SELECT Task, Description FROM Todo WHERE Id = ?',
+                (str(number),))
+    cur_data = cur.fetchone()
+    task_data = cur_data[0]
+    description_data = cur_data[1]
 
-        return template('templates/edit_task', old_task=task_data,
+    return template('templates/edit_task', old_task=task_data,
                         description=description_data, number=number)
 
 

@@ -6,7 +6,7 @@ import db
 db.SeedData
 
 
-database_name = db.data.database_name
+database_name = db.SeedData.database_name
 
 
 def database_connection():

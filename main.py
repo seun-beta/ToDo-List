@@ -2,11 +2,11 @@ import sqlite3
 # Importing all the needed bottle modules
 from bottle import route, run, template,\
     static_file, error, request
-import db
-db.SeedData
+from db import SeedData
+SeedData
 
 
-database_name = db.SeedData.database_name
+database_name = SeedData.database_name
 
 
 def database_connection():

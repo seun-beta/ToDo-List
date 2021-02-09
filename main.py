@@ -74,8 +74,11 @@ def edit_item(number):
     cur.execute('SELECT Task, Description FROM Todo WHERE Id = ?',
                 (str(number),))
     cur_data = cur.fetchone()
-    task_data = cur_data[0]
-    description_data = cur_data[1]
+    if len(cur_data) < 2 :
+        return '<h3>Task not found </h3>'
+    else:
+        task_data = cur_data[0]
+        description_data = cur_data[1]
 
     return template('templates/edit_task', old_task=task_data,
                         description=description_data, number=number)

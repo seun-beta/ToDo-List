@@ -23,9 +23,6 @@ class SeedData:
                 ('Choose your favourite WSGI-Framework',
                     'This is the fourth description');'''
 
-    def __init__(self):
-        pass
-
     def connect_data(self):
         
         connection = sqlite3.connect(SeedData.database_name)
@@ -35,10 +32,3 @@ class SeedData:
         connection.commit()
         cur.close()
         return cur, connection
-
-
-data = SeedData()
-data.connect_data()
-
-
-

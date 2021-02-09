@@ -3,14 +3,9 @@ import sqlite3
 from bottle import route, run, template,\
     static_file, error, request
 from db import SeedData
-SeedData
-
-
-database_name = SeedData.database_name
-
 
 def database_connection():
-    connection = sqlite3.connect(database_name)
+    connection = sqlite3.connect(SeedData.database_name)
     cur = connection.cursor()
     return cur, connection
 
@@ -26,10 +21,9 @@ def home():
 
     return template('templates/table', rows=result)
 
-# Helper function  
+ 
 def request_func(get_request):
-    result = request.GET.get(get_request, '').strip()
-    return result
+    return request.GET.get(get_request, '').strip()
 
 @route('/new', method='GET')
 def new_item():
@@ -103,4 +97,6 @@ def mistake_404(code):
 
 
 if __name__ == "__main__":
+    data = SeedData()
+    data.connect_data()
     run(debug=True, reloader=True)

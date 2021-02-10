@@ -1,5 +1,4 @@
 import sqlite3
-# Importing all the needed bottle modules
 from bottle import route, run, template,\
     static_file, error, request
 from db import SeedData
@@ -10,12 +9,11 @@ def database_connection():
     return cur, connection
 
 
-# main route
-@route('/')
+@route('/')  # main route
 def home():
     cur, connection = database_connection()
     cur.execute("SELECT Id, Task, Description FROM Todo;")
-    result = cur.fetchall()   # Returns a list of tuple from the database
+    result = cur.fetchall() 
     cur.close()
 
 
@@ -28,9 +26,7 @@ def get_request(form_value):
 @route('/new', method='GET')
 def new_item():
     if get_request('save'):
-
         new = get_request('task')
-        
         description = get_request('description')
 
         cur, connection = database_connection()
@@ -50,6 +46,7 @@ def edit_item(number):
     if get_request('save'):
         edit = get_request('task')
         description = get_request('description')
+
         cur, connection = database_connection()
         cur.execute('UPDATE Todo SET Task = ?, Description = ? WHERE Id = ?',
                     (edit, description, number))
@@ -69,7 +66,6 @@ def edit_item(number):
         <p> The item %s was sucessfully deleted</p>
         <p><a href="/">Go Home</a></p>''' % str(number)
 
-    
     cur, connection = database_connection()
     cur.execute('SELECT Task, Description FROM Todo WHERE Id = ?',
                 (str(number),))

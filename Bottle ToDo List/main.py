@@ -3,6 +3,7 @@ from bottle import route, run, template,\
     static_file, error, request
 from db import SeedData
 
+
 def database_connection():
     connection = sqlite3.connect(SeedData.database_name)
     cur = connection.cursor()
@@ -13,15 +14,15 @@ def database_connection():
 def home():
     cur, connection = database_connection()
     cur.execute("SELECT Id, Task, Description FROM Todo;")
-    result = cur.fetchall() 
+    result = cur.fetchall()
     cur.close()
-
 
     return template('templates/table', rows=result)
 
- 
+
 def get_request(form_value):
     return request.GET.get(form_value, '').strip()
+
 
 @route('/new', method='GET')
 def new_item():
@@ -70,14 +71,14 @@ def edit_item(number):
     cur.execute('SELECT Task, Description FROM Todo WHERE Id = ?',
                 (str(number),))
     cur_data = cur.fetchone()
-    if len(cur_data) < 2 :
+    if len(cur_data) < 2:
         return '<h3>Task not found </h3>'
     else:
         task_data = cur_data[0]
         description_data = cur_data[1]
 
     return template('templates/edit_task', old_task=task_data,
-                        description=description_data, number=number)
+                    description=description_data, number=number)
 
 
 @route('/help')
@@ -86,12 +87,12 @@ def help():
 
 
 @error(403)
-def mistake403(code):
+def error_403(code):
     return template('templates/403_error')
 
 
 @error(404)
-def mistake_404(code):
+def error_404(code):
     return template('templates/404_error')
 
 

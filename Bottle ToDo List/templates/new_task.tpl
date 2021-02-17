@@ -61,7 +61,7 @@ margin-bottom:0;
 <body>
 <h1>Add To-do</h1>
 
-    <form action="">
+    <form action="", method="GET">
     <div>   
     <label for="task">
             Task:

@@ -1,4 +1,4 @@
-<form action="">
+<form action="", method="GET">
     <label for="task">Edit Task:</label><br>
     <input type="text" name="task" id="task" value="{{old_task}}" required><br>
     <label for="description">Edit Description:</label><br>

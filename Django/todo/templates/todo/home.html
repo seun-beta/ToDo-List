@@ -7,6 +7,29 @@
     <title>Document</title>
 </head>
 <body>
-    <h3>Welcome!</h3>
+    <table border="2"">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Task</th>
+            <th>Task Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr>
+        {% for data_dict in data %}
+            {% for i in data_dict.values %}
+                <td>{{i}}</td>      
+        </tr>   
+        </tbody>
+        
+            {%endfor%}
+            
+        {% endfor %}
+
+    </table>
 </body>
+
+<a href="{% url 'todo:new' %}">Add New Item</a>
 </html>

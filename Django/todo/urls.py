@@ -5,7 +5,10 @@ from . import views
 
 app_name = 'todo'
 
-INSTALLED_APPS = [
-    path('', views.index, name='index')
+urlpatterns = [
+    path('', views.index, name='index'),
+    path('edit/<int:id>', views.Edit.as_view(), name='edit'),
+    path('new', views.New.as_view(), name='new'),
+    path('success', views.Success.as_view(), name='success')
 
 ]

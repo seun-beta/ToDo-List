@@ -12,15 +12,9 @@ from .models import Task
 
 def index(request):
     data = Task.objects.values()
-    print(len(data))
-    for i in data:
-        print(i)
-        id = i['id']
-        task = i['task']
-        task_description = i['task_description']
     context = {'data' : data}
     return render(request, 'todo/home.html', context)
-
+    
 class Edit(View):
     def get(request, id):
 
@@ -36,8 +30,7 @@ class New(View):
 
     def post(self, request):
         response_task = request.POST.get('task')
-        response_task_description = request.POST.get('task_description')
-        t = Task(task=response_task, task_description=response_task_description)
+        t = Task(task=response_task)
         t.save()
         return HttpResponseRedirect('success')
 

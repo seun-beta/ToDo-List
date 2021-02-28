@@ -12,21 +12,23 @@
         <tr>
             <th>Id</th>
             <th>Task</th>
-            <th>Task Description</th>
         </tr>
         </thead>
 
-        <tbody>
+        <tbody> 
         <tr>
-        {% for data_dict in data %}
-            {% for i in data_dict.values %}
-                <td>{{i}}</td>      
-        </tr>   
+             {% for i in data.question %}
+                <a href="{% url 'todo:edit' %}"><td>{{i}}</td></a>
+                <form action="">
+                    <input type="text" name="" id="" value="{{i}}">
+                </form>
+             {% endfor %}
+
+
+        </tr> 
         </tbody>
         
-            {%endfor%}
             
-        {% endfor %}
 
     </table>
 </body>

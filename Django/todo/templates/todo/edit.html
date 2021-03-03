@@ -7,6 +7,14 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <form action="" method="POST">
+        <label for="task">Task</label> <br>
+        <input type="text" name="edit_task" id="" value="{{task.task}}"> <br>
+        <input type="submit" name="" id="" value="Submit Task">
+        <input type="hidden" name="task_id" id="" value="{{task.id}}">
+        {% csrf_token %}
+
+    </form>
 </body>
 </html>
+<a href="{% url 'home:index' %}">Go to Task List</a>

@@ -11,10 +11,10 @@
         <label for="task">Task</label> <br>
         <input type="text" name="edit_task" id="" value="{{task.task}}"> <br>
         <input type="submit" name="" id="" value="Submit Task">
-        <input type="hidden" name="task_id" id="" value="{{task.id}}">
+        <input type="submit" name="" id="" value="Delete Task">
         {% csrf_token %}
 
     </form>
 </body>
 </html>
-<a href="{% url 'home:index' %}">Go to Task List</a>
+<a href="{% url 'todo:index' %}">Go to Task List</a>

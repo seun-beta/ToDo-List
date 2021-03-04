@@ -20,10 +20,15 @@ class Edit(View):
         return render(request, 'todo/edit.html', context)
 
     def post(self, request, number):
-        edit_task = request.POST.get('edit_task')
-        #task_id = request.POST.get('task_id')
-        edited_task = Task.objects.filter(pk=number).update(task=edit_task)
-        #edited_task.save()
+        if request.POST.get('submit_task'):
+            edit_task = request.POST.get('edit_task')
+            edited_task = Task.objects.filter(pk=number).update(task=edit_task)
+
+        elif request.POST.get('delete_task'):
+            delete_task = request.POST.get('edit_task')
+            delete_task = Task.objects.filter(pk=number).delete()
+
+
 
         return render(request, 'todo/edit_success.html')
         

@@ -10,8 +10,8 @@
     <form action="" method="POST">
         <label for="task">Task</label> <br>
         <input type="text" name="edit_task" id="" value="{{task.task}}"> <br>
-        <input type="submit" name="" id="" value="Submit Task">
-        <input type="submit" name="" id="" value="Delete Task">
+        <input type="submit" name="submit_task" id="" value="Submit Task">
+        <input type="submit" name="delete_task" id="" value="Delete Task">
         {% csrf_token %}
 
     </form>

@@ -7,8 +7,6 @@ from django.urls import reverse
 
 from .models import Task
 
-# Create your views here.
-
 class TaskList(ListView):
     model = Task
     context_object_name = 'my_tasks'
@@ -27,7 +25,7 @@ class Edit(View):
         edited_task = Task.objects.filter(pk=number).update(task=edit_task)
         #edited_task.save()
 
-        return HttpResponse(request, 'todo/edit_success.html')
+        return render(request, 'todo/edit_success.html')
         
 
 class New(View):
@@ -38,11 +36,9 @@ class New(View):
         response_task = request.POST.get('task')
         task = Task(task=response_task)
         task.save()
-        return HttpResponseRedirect('success')
+        return render(request, 'todo/new_success.html')
 
 
 class Success(View):
     def get(self, request):
         return render(request, 'todo/success.html')
-
-

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Task List</h1>
+    {% if task_list %}
+        <table border="2">
+            <tr>
+                <th>Task</th>
+                <th>Task Description</th>
+                <th>Option</th>
+            </tr>
+        {% for task in task_list %}
+            <tr>
+                <td><a href="{% url 'todo:edit' task.id %}"> {{ task.task }} </a> </td>
+                <td>{{ task.description }}</td> 
+                <td><a href="{% url 'todo:delete' task.id %}">Delete</a></td>
+            </tr>
+            <br>
+        {% endfor %}
+        </table>
+        <br>
+        <p><a href="{% url 'todo:new' %}">Add New Task</a></p>
+    {% else %}
+        <p>The library is empty </p> <br>
+        <a href="{% url 'todo:new' %}">Add your first task here</a>
+    {% endif %}
+</body>
+</html>

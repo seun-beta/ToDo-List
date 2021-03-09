@@ -1,10 +1,16 @@
 from django.db import models
-
-# Create your models here.
+from django.core.validators import MinLengthValidator
 
 class Task(models.Model):
-    task = models.CharField(max_length=256)
-    #task_description = models.CharField(max_length=400)
+    task = models.CharField(
+        max_length=200,
+        help_text='Enter a task',
+        validators = [MinLengthValidator(1, "Task must be greater than 1 character")]
+    )
+    description = models.CharField(
+        max_length=500,
+        help_text= "Enter the description of your task"  
+    )
 
-    #def __str__(self):
-    #    return self.task, self.task_description
+    def __str__(self):
+        return self.task

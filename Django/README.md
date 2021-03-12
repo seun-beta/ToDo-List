@@ -4,7 +4,7 @@ Todo List is a Fullstack Web App that features a list of errands and other tasks
 
 ## Tech
 
-ToDo List is written in Python3 and Django 3.  
+ToDo List is written in Python3 and Django3.  
   
 ## Installation  
   
@@ -19,7 +19,7 @@ Please install and set up the following packages first. Ugrade if you find the p
 
 * Download [pip](https://pip.pypa.io/en/latest/installing) and follow the instructions in the link as an installation guide.  
 * [SQLite3](https://sqlitebrowser.org/) (Ensure it is installed).
-* It is advisable to use bottle in a virtual environment. The README uses [virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/latest/install.html#basic-installation) to create this virtual environment. You could use any virtualenv package of your choice but for Windows, install this wrapper with:
+* It is advisable to install Django in a virtual environment. The README uses [virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/latest/install.html#basic-installation) to create this virtual environment. You could use any virtualenv package of your choice but for Windows, install this wrapper with:
 
   ```sh
   py -m pip install virtualenvwrapper-win 

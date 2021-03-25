@@ -35,7 +35,7 @@ Please install and set up the following packages first. Ugrade if you find the p
   ```
 * Install requirements in the virtual environment created:
   ```sh
-  py -m pip install bottle 
+  pip install bottle 
   ```
   ```sh
   pip install -r requirements.txt
